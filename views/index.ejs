@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTnHg4CGR2D7kSs0v4LLanw2qksYuRlEzO+tcaEPQogQ0KaoGN26/zrn20ImR1DfuLWnOo7aBA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="index.css">
+    <title>CryptoDash</title>
+</head>
+<body>
+    <div class="container">
+        <div class="navbar">
+          <a href="/">
+            <i class="fas fa-asterisk"></i> CryptoDash
+          </a>
+        </div>
+        <div class="hero">
+            <div class="hero-text">
+                <h1>Track all your <span>cryptocurrencies</span> in one place.</h1>
+                <p>CryptoDash is an API based coin tracking website which updates the data in real time.</p>
+                <button>View Coins</button>
+            </div>
+            <div class="hero-image">
+                <img src="/cryptocurrency-trading-platform-2974832-2487726.webp" alt="">
+            </div>
+        </div>
+        <div class="converter">
+            <div class="coin-div">
+                <input type="number" name="coin-value" id="coin-value" class="coin-value boxy" placeholder="1">
+                <select name="coin-options" id="coin-options" class="coin-options">
+                    <option value="bitcoin">BTC</option>
+                    <option value="tether">Tehter</option>
+                    <option value="dogecoin">Dogecoin</option>
+                    <option value="binancecoin">Binance</option>
+                </select>
+            </div>
+            <div class="currency">
+                <input type="number" name="currency-value" class="currency-value" placeholder="$12,345,675,321">
+            </div>
+            <div class="convet-btn">
+                <button>Convert</button>
+            </div>
+        </div>
+        <div class="coins-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Coin</th>
+                        <th>Price</th>
+                        <th>24H</th>
+                        <th>Market Cap.</th>
+                    </tr>
+                    
+                </thead>
+                <% coins.forEach(coin => { %>
+                  <tr class="hover" id="<%= coin.id %> " onclick='generate(id)'>
+                    <td class="coiny">
+                        <img src=<%= coin.image %>  alt="">
+                        <%= coin.name %> 
+                    </td>
+                    <td>
+                      ₹<%= coin.current_price.toLocaleString() %>
+                    </td>
+                    <td>
+                      <% if (coin.price_change_percentage_24h > 0) { %>
+                        <div class="status green">
+                          <%= coin.price_change_percentage_24h.toFixed(2) %>%
+                      </div>
+                      <% } %>
+                      <% if (coin.price_change_percentage_24h < 0) { %>
+                        <div class="status red">
+                          <%= coin.price_change_percentage_24h.toFixed(2) %>% 
+                        </div>
+                      <% } %>
+                    </td>
+                    <td>
+                      ₹<%= coin.market_cap.toLocaleString() %> 
+                    </td>
+                </tr>
+                <% }) %>
+            </table>
+        </div>
+        <div class="footer">
+          <div class="logo">
+            <img src="https://static.coingecko.com/s/coingecko-branding-guide-4f5245361f7a47478fa54c2c57808a9e05d31ac7ca498ab189a3827d6000e22b.png" alt="">
+          </div>
+          <div class="footer-text">
+            <p>This site uses Coin Gecko API for serving the data on the listed crypotcurrencies.</p>
+            <p>Made by Piyush Tekwani.</p>
+          </div>
+        </div>
+    </div>
+    <script>
+      const calculate = async () => {
+        console.log(currencyName.value);
+        console.log(currencyValue.value);
+        const exchange = await fetch(`https://api.coingecko.com/api/v3/coins/${currencyName.value}`);
+        const exchangeData = await exchange.json();
+        const inr_price = exchangeData.market_data.current_price.inr;
+        inr.value = (currencyValue.value * inr_price);
+        console.log(inr.value);
+
+        //console.log(exchangeData.market_data.current_price.inr);
+      }
+      const currencyName = document.querySelector('.coin-options');
+      const currencyValue = document.querySelector('.coin-value');
+      const inr = document.querySelector('.currency-value');
+      currencyName.addEventListener('change', calculate);
+      currencyValue.addEventListener('change', calculate);
+
+      const coinLink = document.querySelector('.coiny');
+      function generate(id) {
+        console.log(id);
+        window.location.href = `/coins/${id}`;
+
+      }
+    </script>
+</body>
+</html>

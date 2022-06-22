@@ -1,0 +1,140 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Lato',serif;
+}
+.container{
+    min-height: 100vh;
+    max-width: 100vw;
+    background-color: #EFF7FE;
+    padding: 1% 5%;
+    .navbar{
+        font-size: 2rem;
+        padding: 1% 0%;
+        font-weight: 700;
+        i{
+            color: #43A3F8;
+            font-size: 2.5rem;
+        }
+        a{
+            color: inherit;
+            text-decoration: none;
+        }
+    }
+    .coin-info{
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 1rem;
+        .right{
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            border-radius: 0.5rem;
+            height: 85vh;
+            
+            .chart{
+                position: relative;
+                background-color: white;
+                padding: 2rem;
+                border-radius: 0.5rem;
+                box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            }
+            .news{
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                .news-item{
+                    background-color: white;
+                    padding: 1rem;
+                    border-radius: 0.5rem;
+                    height: 100%;
+                    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+                    p{
+                        margin-top: 1rem;
+                    }
+                }
+                
+            }
+        }
+        .left{
+            box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+            background-color: white;
+            display: flex;
+            flex-direction: column;
+            border-radius: 0.5rem;
+            padding: 1rem 2rem;
+            gap: 1rem;
+            .name{
+                display: flex;
+                justify-content: space-between;
+                height: 15vh;
+                align-items: center;
+                overflow: hidden;
+                gap: 0.5rem;
+                .coin-title{
+                    flex: 1;
+                    display: flex;
+                    align-items: baseline;
+                    gap: 0.5rem;
+                    font-weight: 600;
+                    font-size: 2rem;
+                    span{
+                        color: rgb(163, 163, 163);
+                        font-size: 0.8rem;
+                    }
+                }
+                .percent{
+                    padding: 0.5rem 1rem;
+                    border-radius: 0.3rem;
+                    font-weight: 600;
+                }
+                .green{
+                    background: #E1F8E6;
+                    color: #4ab66e;
+                }
+                .red{
+                    background: #FFDADA;
+                    color: #EF5959;
+                }
+                img{
+                    height: 100%;
+                    width: 100%;
+                    max-width: 80px;
+                    object-fit: contain;
+                }
+            }
+            .price{
+                display: flex;
+                flex-direction: column;
+                .coin-price-heading{
+                    font-size: 1rem;
+                    color: rgb(198, 198, 198);
+                    font-weight: 600;
+                }
+                .coin-price{
+                    font-size: 1.3rem;
+                    color: #1a1a1a;
+                }
+            }
+            .market-stat{
+                display: flex;
+                justify-content: space-between;
+                align-items: stretch;
+                height: 7vh;
+                align-items: center;
+                border-bottom: 1px solid rgb(211, 211, 211);
+                .stat-text{
+                    font-size: 1rem;
+                    font-weight: 600;
+                    color: rgb(199, 198, 198);
+                }
+                .stat-val{
+                    font-size: 1.2rem;
+                    font-weight: 500;
+                }
+            }
+        }
+    }
+}
